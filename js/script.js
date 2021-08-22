@@ -81,24 +81,41 @@ const colors = [
   }
 ]
 
-// variables to be used to track previous quote and color indexes
-let randNumA
-let randNumB
+// quotes and colors that have been selected will be pushed to these arrays, used to prevent repeats
+const quotesReturned = [];
+const colorsReturned = [];
 
 /**
- * Generates a random number between 0 and highestNum
+ * Generates a random number between 0 and `highestNum`
  *
- * @param {number} highestNUm - determines highest possible random number
+ * @param {number} highestNum - determines highest possible random number
  */
 function randomNumber(highestNum) {
   return Math.floor(Math.random() * highestNum);
 }
 
-/***
- * `getRandomQuote` function
-***/
+/**
+ * Selects a random quote from an array, pushes selected quote to new array, and removes it from original array
+ *
+ * @param {object} arr - the array being used
+ */
+function getRandomQuote(arr) {
+  // if no objects remain in the `arr` array, restores it to its original state by combining the two arrays
+  if (arr.length === 0) {
+    quotes.push.apply(quotes, quotesReturned);
+  }
 
+  const randNum = randomNumber(quotes.length);
+  const randQuote = quotes[randNum];
 
+  // adds the selected quote to the quotesReturned array
+  quotesReturned.push(randQuote);
+
+  // removes the selected quote from the quotes array
+  quotes.splice(randNum, 1);
+
+  return randQuote;
+}
 
 /***
  * `printQuote` function
