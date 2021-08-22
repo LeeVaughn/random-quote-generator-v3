@@ -85,6 +85,15 @@ const colors = [
 let randNumA
 let randNumB
 
+/**
+ * Generates a random number between 0 and highestNum
+ *
+ * @param {number} highestNUm - determines highest possible random number
+ */
+function randomNumber(highestNum) {
+  return Math.floor(Math.random() * highestNum);
+}
+
 /***
  * `getRandomQuote` function
 ***/
