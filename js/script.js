@@ -84,6 +84,7 @@ const colors = [
 // quotes and colors that have been selected will be pushed to these arrays, used to prevent repeats
 const quotesReturned = [];
 const colorsReturned = [];
+let timer;
 
 /**
  * Generates a random number between 0 and `highestNum`
@@ -141,6 +142,16 @@ function getRandomColors(arr) {
 }
 
 /**
+ * Clears any previous timers and sets a new one
+ *
+ * @param {number} interval - amount of time to set the timer for
+ */
+function startTimer(interval) {
+  clearInterval(timer);
+  timer = setInterval(printQuote, interval);
+}
+
+/**
  * Displays the selected quote on the page, changes the background color, and starts a timer for a new quote
  *
  */
@@ -164,6 +175,8 @@ function printQuote() {
     document.getElementById("quote-box").innerHTML = html;
     document.body.style.background = currentColors.background;
     document.getElementById("load-quote").style.background = currentColors.button;
+
+    startTimer(7000);
 }
 
 printQuote(quotes);
