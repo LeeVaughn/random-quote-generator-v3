@@ -60,8 +60,8 @@ const quotes = [
 
 const colors = [
   {
-  background: "#420516", // dark maroon
-  button: "#B42B51" // light maroon
+    background: "#420516", // dark maroon
+    button: "#B42B51" // light maroon
   },
   {
     background: "#BFA2DB", // lavender
@@ -103,11 +103,11 @@ function randomNumber(highestNum) {
 function getRandomQuote(arr) {
   // if no objects remain in the `arr` array, restores it to its original state by combining the two arrays
   if (arr.length === 0) {
-    quotes.push.apply(quotes, quotesReturned);
+    arr.push.apply(arr, quotesReturned);
   }
 
-  const randNum = randomNumber(quotes.length);
-  const randQuote = quotes[randNum];
+  const randNum = randomNumber(arr.length);
+  const randQuote = arr[randNum];
 
   // adds the selected quote to the quotesReturned array
   quotesReturned.push(randQuote);
@@ -128,29 +128,45 @@ function getRandomQuote(arr) {
 function getRandomColors(arr) {
   // the logic for how this function works is similar to the logic for the getRandomColor function
   if (arr.length === 0) {
-    colors.push.apply(colors, colorsReturned);
-    colorsReturned = [];
+    arr.push.apply(arr, colorsReturned);
   }
 
   const randNum = randomNumber(arr.length);
-  const randColors = colors[randNum];
+  const randColors = arr[randNum];
 
   colorsReturned.push(randColors);
-  colors.splice(randomColor, 1);
+  colors.splice(randNum, 1);
 
   return randColors;
 }
 
 /**
- * Builds an HTML string from the selected quote object and displays it on the screen
+ * Displays the selected quote on the page, changes the background color, and starts a timer for a new quote
  *
- * @param {object} arr - the array being used
  */
-function printQuite(arr) {
+function printQuote() {
+  const currentQuote = getRandomQuote(quotes);
+  const currentColors = getRandomColors(colors);
 
+  let html = "";
+    html = "<p class='quote'> " + currentQuote.quote + "</p>";
+    html += "<p class='source'> " + currentQuote.source;
+    if (currentQuote.citation) {
+        html += "<span class='citation'> " + currentQuote.citation + "</span>";
+    }
+    if (currentQuote.year) {
+        html += "<span class='year'> " + currentQuote.year + "</span>";
+    }
+    if (currentQuote.category) {
+      html += "<span class='category'> " + currentQuote.category + "</span>";
+    }
+
+    document.getElementById("quote-box").innerHTML = html;
+    document.body.style.background = currentColors.background;
+    document.getElementById("load-quote").style.background = currentColors.button;
 }
 
-
+printQuote(quotes);
 
 /***
  * click event listener for the print quote button
