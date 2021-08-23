@@ -98,6 +98,7 @@ function randomNumber(highestNum) {
  * Selects a random quote from an array, pushes selected quote to new array, and removes it from original array
  *
  * @param {object} arr - the array being used
+ * @return {object} randomly selected quotes object
  */
 function getRandomQuote(arr) {
   // if no objects remain in the `arr` array, restores it to its original state by combining the two arrays
@@ -117,9 +118,14 @@ function getRandomQuote(arr) {
   return randQuote;
 }
 
-/***
- * `printQuote` function
-***/
+/**
+ * Builds an HTML string from the selected quote object and displays it on the screen
+ *
+ * @param {object} arr - the array being used
+ */
+function printQuite(quotes) {
+  
+}
 
 
 
