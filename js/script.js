@@ -118,13 +118,36 @@ function getRandomQuote(arr) {
   return randQuote;
 }
 
+
+/**
+ * Selects a random quote from an array, pushes selected quote to new array, and removes it from original array
+ *
+ * @param {object} arr - the array being used
+ * @return {object} randomly selected colors object
+ */
+function getRandomColors(arr) {
+  // the logic for how this function works is similar to the logic for the getRandomColor function
+  if (arr.length === 0) {
+    colors.push.apply(colors, colorsReturned);
+    colorsReturned = [];
+  }
+
+  const randNum = randomNumber(arr.length);
+  const randColors = colors[randNum];
+
+  colorsReturned.push(randColors);
+  colors.splice(randomColor, 1);
+
+  return randColors;
+}
+
 /**
  * Builds an HTML string from the selected quote object and displays it on the screen
  *
  * @param {object} arr - the array being used
  */
-function printQuite(quotes) {
-  
+function printQuite(arr) {
+
 }
 
 
